@@ -43,6 +43,14 @@ function numberWithCommas(x) {
 }
 
 function displayMathces() {
+  const thisValue = this.value
+  if (thisValue.length === 0){
+    introHtml = `
+      <li>Search for a city</li>
+      <li>or a state in USA</li>      
+    `
+  suggestions.innerHTML = introHtml
+  } else {
   const matchArray = findMathces(this.value, cities)
   const html = matchArray.map(place =>  {
     const regex = new RegExp(this.value, 'gi');
@@ -55,7 +63,8 @@ function displayMathces() {
       </li>
     `
   }).join('')
-  suggestions.innerHTML = html
+    suggestions.innerHTML = html
+  }
 }
 
 searchInput.addEventListener("keyup", displayMathces);
